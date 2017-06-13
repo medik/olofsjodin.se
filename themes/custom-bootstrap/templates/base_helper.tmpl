@@ -1,0 +1,116 @@
+{#  -*- coding: utf-8 -*- #}
+
+{% macro html_headstart() %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="utf-8">
+    {% if use_base_tag %}
+    <base href="{{ abs_link(permalink) }}">
+    {% endif %}
+    {% if description %}
+    <meta name="description" content="{{ description|e }}">
+    {% endif %}
+    <meta name="viewport" content="width=device-width">
+    {% if title == blog_title %}
+        <title>{{ blog_title|e }}</title>
+    {% else %}
+        <title>{{ title|e }} | {{ blog_title|e }}</title>
+    {% endif %}
+
+    {{ html_stylesheets() }}
+    <meta name="theme-color" content="{{ theme_color }}">
+    {% if meta_generator_tag %}
+    <meta name="generator" content="Nikola (getnikola.com)">
+    {% endif %}
+    {{ html_feedlinks() }}
+    <link rel="canonical" href="{{ abs_link(permalink) }}">
+
+    {% if favicons %}
+        {% for name, file, size in favicons %}
+            <link rel="{{ name }}" href="{{ file }}" sizes="{{ size }}"/>
+        {% endfor %}
+    {% endif %}
+
+    {% if comment_system == 'facebook' %}
+        <meta property="fb:app_id" content="{{ comment_system_id }}">
+    {% endif %}
+
+    {% if prevlink %}
+        <link rel="prev" href="{{ prevlink }}" type="text/html">
+    {% endif %}
+    {% if nextlink %}
+        <link rel="next" href="{{ nextlink }}" type="text/html">
+    {% endif %}
+
+    {% if use_cdn %}
+        <!--[if lt IE 9]><script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    {% else %}
+        <!--[if lt IE 9]><script src="{{ url_replacer(permalink, '/assets/js/html5.js', lang, url_type) }}"></script><![endif]-->
+    {% endif %}
+
+    {{ extra_head_data }}
+{% endmacro %}
+
+{% macro contact_info() %}
+    <div id="contact" class="panel panel-default">
+	<div class="panel-heading">
+	    <h3 class="panel-title"> Contact information </h3>
+	</div>
+	<div class="panel-body">
+	    <ul>
+		<li> <a href="mailto: me@olofsjodin.se"> <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> E-mail: me@olofsjodin.se </a> </li>
+		<li> <a href="https://github.com/medik"> <span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Github: medik </a> </li>
+		<li> <a href="#"> <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> Phone: private, ask nicely over E-mail </a> </li>
+	    </ul>
+	</div>
+    </div>
+{% endmacro %}
+
+{% macro late_load_js() %}
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endmacro %}
+
+{% macro html_stylesheets() %}
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    {% if needs_ipython_css %}
+        <link href="/assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+    {% endif %}
+{% endmacro %}
+
+{% macro html_feedlinks() %}
+    {% if rss_link %}
+        {{ rss_link }}
+    {% elif generate_rss %}
+        {% if translations|length > 1 %}
+            {% for language in translations|sort %}
+                <link rel="alternate" type="application/rss+xml" title="RSS ({{ language }})" href="{{ _link('rss', None, language) }}">
+            {% endfor %}
+        {% else %}
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ _link('rss', None) }}">
+        {% endif %}
+    {% endif %}
+    {% if generate_atom %}
+        {% if translations|length > 1 %}
+            {% for language in translations|sort %}
+                <link rel="alternate" type="application/atom+xml" title="Atom ({{ language }})" href="{{ _link('index_atom', None, language) }}">
+            {% endfor %}
+        {% else %}
+            <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ _link('index_atom', None) }}">
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro html_translations() %}
+    <ul class="translations">
+    {% for langname in translations|sort %}
+        {% if langname != lang %}
+            <li><a href="{{ abs_link(_link("root", None, langname)) }}" rel="alternate" hreflang="{{ langname }}">{{ messages("LANGUAGE", langname) }}</a></li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endmacro %}

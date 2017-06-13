@@ -1,0 +1,110 @@
+{#  -*- coding: utf-8 -*- #}
+{% import 'base_helper.tmpl' as base with context %}
+
+{% macro html_header() %}
+    <header id="header">
+	<nav class="navbar navbar-inverse navbar-static-top">
+	    <div class="container">
+		<div class="navbar-header">
+		    <a href="#" class="navbar-brand">{{ blog_title|e }}</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    {{ nav_links() }}
+		</div>
+	    </div>
+	</nav>
+    </header>
+{#    {{ template_hooks['page_header']() }} #}
+{% endmacro %}
+
+{% macro html_jumbotron() %}
+    <div class="jumbotron">
+	<h1> Welcome </h1>
+	<p> Get the latest news about me, my projects, and how you can easily reach me. </p>
+	<p><a class="btn btn-primary btn-lg" href="#" role="button"> Learn more </a></p>
+    </div>
+{% endmacro %}
+
+{% macro html_site_title() %}
+    <h1 id="brand"><a href="{{ abs_link(_link("root", None, lang)) }}" title="{{ blog_title|e }}" rel="home">
+    {% if logo_url %}
+        <img src="{{ logo_url }}" alt="{{ blog_title|e }}" id="logo">
+    {% endif %}
+
+    {% if show_blog_title %}
+        <span id="blog-title">{{ blog_title|e }}</span>
+    {% endif %}
+    </a></h1>
+{% endmacro %}
+
+{% macro nav_links_helper(left_or_right) %}
+    {% for url, text in navigation_links[left_or_right] %}
+	{% if isinstance(url, tuple) %}
+	    <li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ text }} <span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		    {% for suburl, text in url %}
+			{% if rel_link(permalink, suburl) == "#" %}
+			    <li class="active"><a href="{{ suburl }}">{{ text }}</a></li>
+			{% else %}
+			    <li><a href="{{ suburl }}">{{ text }} </a></li>
+			{% endif %}
+		    {% endfor %}
+		</ul>
+	    </li>
+	{% else %}
+	    {% if isinstance(url, tuple) %}
+		<li class="active"><a href="{{ url }}">{{ text }} </a></li>
+	    {% else %}
+		<li><a href="{{ url }}">{{ text }} </a></li>
+	    {% endif %}
+	{% endif %}
+    {% endfor %}    
+{% endmacro %}
+
+{% macro nav_links() %}
+    <ul class="nav navbar-nav">
+	{{ nav_links_helper('left') }}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+	{{ nav_links_helper('right') }}
+    </ul>
+{% endmacro %}
+
+{% macro html_navigation_links() %}
+    <nav id="menu">
+    <ul>
+    {% for url, text in navigation_links[lang] %}
+        {% if isinstance(url, tuple) %}
+            <li> {{ text }}
+            <ul>
+            {% for suburl, text in url %}
+                {% if rel_link(permalink, suburl) == "#" %}
+                    <li class="active"><a href="{{ permalink }}">{{ text }} <span class="sr-only">{{ messages("(active)", lang) }}</span></a></li>
+                {% else %}
+                    <li><a href="{{ suburl }}">{{ text }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% else %}
+            {% if rel_link(permalink, url) == "#" %}
+                <li class="active"><a href="{{ permalink }}">{{ text }} <span class="sr-only">{{ messages("(active)", lang) }}</span></a></li>
+            {% else %}
+                <li><a href="{{ url }}">{{ text }}</a></li>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {{ template_hooks['menu']() }}
+    {{ template_hooks['menu_alt']() }}
+    </ul>
+    </nav>
+{% endmacro %}
+
+{% macro html_translation_header() %}
+    {% if translations|length > 1 %}
+        <div id="toptranslations">
+            <h2>{{ messages("Languages:") }}</h2>
+            {{ base.html_translations() }}
+        </div>
+    {% endif %}
+{% endmacro %}
