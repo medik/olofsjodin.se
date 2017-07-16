@@ -589,7 +589,7 @@ REDIRECTIONS = []
 # in a `nikola deploy` command as you like.
 DEPLOY_COMMANDS = {
      'default': [
-         "rsync -rav --delete output/ ~/Dropbox/olofsjodin.se",
+         "rsync -rav --delete output/ helios:/var/www/html",
      ]
  }
 
