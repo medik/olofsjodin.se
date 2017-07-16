@@ -21,7 +21,7 @@ BLOG_AUTHOR = "Olof Sjödin"  # (translatable)
 BLOG_TITLE = "Olof Sjödin"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://olofsjodin.se/"
+SITE_URL = "http://olofsjodin.se/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://olofsjodin.se/"
@@ -136,6 +136,7 @@ HEADER_PERMALINKS_FILE_BLACKLIST = ['output/index.html']
 
 NAVIGATION_LINKS = {
     "default" : (
+        ("/blog/", "Blog"),
         ("/archive.html", "Archive"),
         ("/categories/", "Tags"),
         ("/rss.xml", "RSS feed"),
@@ -283,7 +284,7 @@ COMPILERS = {
 
 # Create by default posts in one file format?
 # Set to False for two-file posts, with separate metadata.
-# ONE_FILE_POSTS = True
+ONE_FILE_POSTS = True
 
 # Use date-based path when creating posts?
 # Can be enabled on a per-post basis with `nikola new_post -d`.
@@ -513,9 +514,6 @@ INDEX_PATH = "blog"
 
 # Optional HTML that displayed on “main” blog index.html files.
 # May be used for a greeting. (translatable)
-FRONT_INDEX_HEADER = {
-    DEFAULT_LANG: 'test'
-}
 
 # Create per-month archives instead of per-year
 # CREATE_MONTHLY_ARCHIVE = False
@@ -589,11 +587,11 @@ REDIRECTIONS = []
 # to `nikola deploy`.  If no arguments are specified, a preset
 # named `default` will be executed.  You can use as many presets
 # in a `nikola deploy` command as you like.
-# DEPLOY_COMMANDS = {
-#     'default': [
-#         "rsync -rav --delete output/ joe@my.site:/srv/www/site",
-#     ]
-# }
+DEPLOY_COMMANDS = {
+     'default': [
+         "rsync -rav --delete output/ ~/Dropbox/olofsjodin.se",
+     ]
+ }
 
 # github_deploy configuration
 # For more details, read the manual:
