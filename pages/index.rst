@@ -9,9 +9,10 @@
 
 .. topic:: Introduction
 	   
-	   Welcome to my webpage! Here you will find stuff related to
-	   programming, hardware and other things that are on my mind. You are
-	   welcome to share the material on this website with others.
+	   It seems that you have found my page on the internet. Welcome! Here
+	   you will find stuff related to software, hardware and other things
+	   that are on my mind. You are welcome to share the material on this
+	   website with others.
 
 	   I am involved in several projects with KTH and friends from school.
 	   Are you interested to having me work on your project? Then, please
