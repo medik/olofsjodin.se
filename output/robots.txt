@@ -1,4 +1,0 @@
-Sitemap: http://olofsjodin.se/sitemapindex.xml
-
-User-Agent: *
-Host: olofsjodin.se
