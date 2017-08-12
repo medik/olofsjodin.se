@@ -1,0 +1,42 @@
+<p>Back in the days, when I didn't have a badass computer to chat with my friends
+on facebook, I spoke with my friends over XMPP i.e. jabber. This was possible
+due to the fact that facebook ran on XMPP. Sadly, this is not true
+today. Facebook decided to shut down their XMPP support. However, some people
+decided that it was a good idea to reverse engineer the Facebook Messenger to
+make their own implementation of the facebook messenger protocol. And now their
+is a plugin to Bitlbee, which is an IRC server which its purpose is to bridge
+the instant messenger world like jabber, ICQ, Yahoo and so on, so now it is
+possible to speak with people over IRC. Pretty cool huh? I will guide you into
+the big &quot;how&quot;.</p>
+<p>I am doing this setup on an Ubuntu Linux 16.04 LTS Server, but the way should be
+similar in other Debian like operating systems.</p>
+<p>Begin by adding this to your /etc/apt/sources.list:</p>
+<pre class="literal-block">
+deb http://download.opensuse.org/repositories/home:/jgeboski/xUbuntu_16.04 ./
+deb http://code.bitlbee.org/debian/master/xenial/amd64/ ./
+</pre>
+<p>Then, run these commands to retrieve their keys:</p>
+<pre class="literal-block">
+wget -O- https://jgeboski.github.io/obs.key | sudo apt-key add -
+wget -O- https://code.bitlbee.org/debian/release.key | sudo apt-key add -
+</pre>
+<p>Install bitlbee and the facebook add-on with apt:</p>
+<pre class="literal-block">
+apt install bitlbee bitlbee-facebook
+</pre>
+<p>Make sure that the bitlbee service is on:</p>
+<pre class="literal-block">
+sudo service bitlbee start
+</pre>
+<p>Now it should be up and running. Start your irc client and connect to localhost.
+Go to the &amp;bitlbee channel, make sure that the facebook plugin is loaded by
+writing &quot;plugins&quot;.</p>
+<p>To add your account, make sure that you have generated an app password. You can
+do that here:
+<a class="reference external" href="https://www.facebook.com/settings?tab=security&amp;section=per_app_passwords&amp;view">https://www.facebook.com/settings?tab=security&amp;section=per_app_passwords&amp;view</a></p>
+<p>Use the generated password by running the following command in the <cite>&amp;bitlbee</cite> channel:</p>
+<pre class="literal-block">
+account add facebook &lt;username/email&gt; &lt;password&gt;
+</pre>
+<p>Finally, run &quot;account on&quot; to connect. Congratulations, you should be able to
+talk to your facebook friends over IRC.</p>

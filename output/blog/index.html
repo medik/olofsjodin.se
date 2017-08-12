@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="&lt;description /&gt;">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olof!</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5680e9">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="http://olofsjodin.se/blog/">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]-->
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://olofsjodin.se/">
+
+                <span id="blog-title">Olof!</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li class="active">
+<a href=".">Blog <span class="sr-only">(active)</span></a>
+                </li>
+<li>
+<a href="../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+
+    
+
+
+    
+<div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/two-months-since-haskell/" class="u-url">Two Months Since Haskell</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Olof Sjödin
+            </span></p>
+            <p class="dateline"><a href="../posts/two-months-since-haskell/" rel="bookmark"><time class="published dt-published" datetime="2017-08-12T02:48:21+02:00" title="2017-08-12 02:48">2017-08-12 02:48</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>I'm going to begin with saying something controversial: I like Haskell, even
+though I am fostered to write in sequential programming (or, informally,
+"C-like" languages). And this article will be me about promoting the concept of
+functional programming, especially Haskell.</p>
+<div class="figure">
+<img alt="https://imgs.xkcd.com/comics/haskell.png" src="https://imgs.xkcd.com/comics/haskell.png"><p class="caption">A funny comic about Haskell, from XKCD.</p>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/facebook-over-irc/" class="u-url">Facebook over IRC</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Olof Sjödin
+            </span></p>
+            <p class="dateline"><a href="../posts/facebook-over-irc/" rel="bookmark"><time class="published dt-published" datetime="2017-08-04T01:10:00+02:00" title="2017-08-04 01:10">2017-08-04 01:10</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Back in the days, when I didn't have a badass computer to chat with my friends
+on facebook, I spoke with my friends over XMPP i.e. jabber. This was possible
+due to the fact that facebook ran on XMPP. Sadly, this is not true
+today. Facebook decided to shut down their XMPP support. However, some people
+decided that it was a good idea to reverse engineer the Facebook Messenger to
+make their own implementation of the facebook messenger protocol. And now their
+is a plugin to Bitlbee, which is an IRC server which its purpose is to bridge
+the instant messenger world like jabber, ICQ, Yahoo and so on, so now it is
+possible to speak with people over IRC. Pretty cool huh? I will guide you into
+the big "how".</p>
+<p>I am doing this setup on an Ubuntu Linux 16.04 LTS Server, but the way should be
+similar in other Debian like operating systems.</p>
+<p>Begin by adding this to your /etc/apt/sources.list:</p>
+<pre class="literal-block">
+deb http://download.opensuse.org/repositories/home:/jgeboski/xUbuntu_16.04 ./
+deb http://code.bitlbee.org/debian/master/xenial/amd64/ ./
+</pre>
+<p>Then, run these commands to retrieve their keys:</p>
+<pre class="literal-block">
+wget -O- https://jgeboski.github.io/obs.key | sudo apt-key add -
+wget -O- https://code.bitlbee.org/debian/release.key | sudo apt-key add -
+</pre>
+<p>Install bitlbee and the facebook add-on with apt:</p>
+<pre class="literal-block">
+apt install bitlbee bitlbee-facebook
+</pre>
+<p>Make sure that the bitlbee service is on:</p>
+<pre class="literal-block">
+sudo service bitlbee start
+</pre>
+<p>Now it should be up and running. Start your irc client and connect to localhost.
+Go to the &amp;bitlbee channel, make sure that the facebook plugin is loaded by
+writing "plugins".</p>
+<p>To add your account, make sure that you have generated an app password. You can
+do that here:
+<a class="reference external" href="https://www.facebook.com/settings?tab=security&amp;section=per_app_passwords&amp;view">https://www.facebook.com/settings?tab=security&amp;section=per_app_passwords&amp;view</a></p>
+<p>Use the generated password by running the following command in the <cite>&amp;bitlbee</cite> channel:</p>
+<pre class="literal-block">
+account add facebook &lt;username/email&gt; &lt;password&gt;
+</pre>
+<p>Finally, run "account on" to connect. Congratulations, you should be able to
+talk to your facebook friends over IRC.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/mx-green-keyboard/" class="u-url">MX Green Keyboard</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Olof Sjödin
+            </span></p>
+            <p class="dateline"><a href="../posts/mx-green-keyboard/" rel="bookmark"><time class="published dt-published" datetime="2017-06-28T20:53:38+02:00" title="2017-06-28 20:53">2017-06-28 20:53</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div>
+<div class="topic">
+<p class="topic-title first">A brief history of Mechanical Keyboards</p>
+<p>One of the most overlooked computer peripherals must be the keyboard. Computers today
+are evolved, CPUs are faster and a harddrive can contain gigabytes of data. Sadly,
+this is not the case with keyboards. The price of cheaper keyboards and higher
+profit margins leads to lower quality keyboards. A vast majority of all keyboards on the market
+are <a class="reference external" href="https://deskthority.net/wiki/Rubber_dome">Rubber dome</a> keyboards.</p>
+<p>Why are Rubber dome keyboards so bad?</p>
+<p>There are varieties of Rubber dome keyboards
+like <a class="reference external" href="https://deskthority.net/wiki/Rubber_dome_over_membrane">rubber dome over membrane</a>.</p>
+<p>Cherry is a German computer peripheral-device maker, it is most known for its
+mechanical key switches. It has been used in industrial electronics since 1980s,
+but has not until recently gained popularity. The reason for this is not known,
+it is common though that starcraft pro players used mechanical keyboards, and
+because of the starcrafts popularity contributed to the increase of mechanical
+keyboards. That is mine 5 cent on this subject, let me know if it is not the case.</p>
+</div>
+<div class="topic">
+<p class="topic-title first">IBM Model M and MX Green</p>
+<p>IBM Model M has regarded as a timeless and a durable keyboard. It is using a
+buckling spring switch, which makes it stiff and got a tactile bump. What this
+means is that you know when you have pressed a key. IBM does not make buckling
+spring keyboards anymore. Today, Unicomp is the only company that manufacture
+keyboards with buckling spring switches in the classic bulky grey style.</p>
+<p>I would prefer smaller keyboards than thoes Unicomp makes, that is why I chose
+to buy a keyboard with MX Green. Cherry tried to mimic the Model M buckling
+spring switch with its MX Green line up. The actuation force for the MX Green
+is 80 cN while the Model M is 90 cN, both got the tactile bump.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Computer_keyboard#Key_switches">https://en.wikipedia.org/wiki/Computer_keyboard#Key_switches</a></p>
+</div>
+<div class="topic">
+<p class="topic-title first">Learn more</p>
+<p><a class="reference external" href="https://deskthority.net/wiki/Main_Page">Deskthority</a> has an excellent wiki on mechanical keyboards and their switches.</p>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="../posts/hello-world/" class="u-url">Hello world</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Olof Sjödin
+            </span></p>
+            <p class="dateline"><a href="../posts/hello-world/" rel="bookmark"><time class="published dt-published" datetime="2017-06-23T20:46:25+02:00" title="2017-06-23 20:46">2017-06-23 20:46</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>Hi, hello world!</p>
+    </div>
+    </article>
+</div>
+
+
+
+
+
+
+
+        </div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:me@olofsjodin.se">Olof Sjödin</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>
