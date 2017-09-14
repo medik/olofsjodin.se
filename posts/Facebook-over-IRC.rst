@@ -33,7 +33,10 @@ Then, run these commands to retrieve their keys::
 	  
   wget -O- https://jgeboski.github.io/obs.key | sudo apt-key add -
   wget -O- https://code.bitlbee.org/debian/release.key | sudo apt-key add -
-		
+
+Update your APT packages by running::
+  
+  apt update	
 
 Install bitlbee and the facebook add-on with apt::
 
