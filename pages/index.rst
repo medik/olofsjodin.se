@@ -16,30 +16,24 @@ Introduction
    :align: right
 
 	   
-Välkommen! It seems that you have found my "secret" website. Here you find my
-personal blog, where I write stuff related to my projects and hobbies, and my
-latest contact information. You are welcome to share the content you find on
-this website.
+Hi! It seems that you have found my not so secret website. Here you
+find my personal blog, where I write approximately once per week stuff
+related to my projects and hobbies. Moreover, on this webpage you will also get the latest contact information. Feel free to look around and see if there are something that might interest you, share it with your friends cause why not :-)
 
 About me
 --------
 
-I am a self-taught computer enthusiast, and is currenly pursuing a degree in
-Master of Science in Engineering at KTH Royal Institute of Technology.
-   
-I find the world facinating, that is why, as a kid, I try to find
-information on how the world works. At the age of twelve I already
-knew how to program in ASP, which is a programming language focussing
-on websites. Today, I am a master in Linux and Python, and are
-using my programming skills to create programs that makes everyone's
-life easier. See my `github`_.
+I am a `self-taught`_ computer enthusiast and I currently pursue a
+degree in Master of Science in Engineering in Physics at `KTH Royal
+Institute of Technology`_. My leisure activites includes reading
+litterature as well as indulging in the latest news from the
+Economist. Furthermore, I develop software in several programming
+languages such as Python, JavaScript and Haskell as well as making the
+user interface to them. Some of my work is published at `Github`_.
 
-Also, I like to watch movies, listen to music, run, read magazines
-and books. I like comics. I play Hearthstone and Terraria from time
-to time, I am also a sucker for retro games like Super Mario and A
-Link to the Past.
-
-.. _github: https://github.com/medik
+.. _self-taught: https://en.wikipedia.org/wiki/Autodidacticism
+.. _KTH Royal Institute of Technology: https://www.kth.se/
+.. _Github: https://github.com/medik
 		      
 
 Contact information
