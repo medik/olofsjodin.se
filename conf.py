@@ -21,12 +21,12 @@ BLOG_AUTHOR = "Olof Sjödin"  # (translatable)
 BLOG_TITLE = "Olof Sjödin"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "http://olofsjodin.se/"
+SITE_URL = "https://olofsjodin.se/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://olofsjodin.se/"
 BLOG_EMAIL = "me@olofsjodin.se"
-BLOG_DESCRIPTION = "<description />"  # (translatable)
+BLOG_DESCRIPTION = "A blog about tech, advanced physics, politics and everything between"  # (translatable)
 
 # Nikola is multilingual!
 #
